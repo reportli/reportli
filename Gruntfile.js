@@ -76,10 +76,22 @@ module.exports = function(grunt) {
         command: 'cd dist; parse deploy'
        },
        ember_build: {
-        command: 'ember build'
+        command: 'ember build --output-path=dist/public'
        }
 
-    }
+    },
+    copy: {
+      cloud: {
+        expand: true,
+        src: 'cloud/*',
+        dest: 'dist/'
+      },
+      config: {
+        src: 'config/global.json',
+        dest: 'dist/'
+      }
+    },
+    clean: ['dist']
   });
 
   // These plugins provide necessary tasks.
@@ -88,9 +100,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   //Unofficial Libraries
   grunt.loadNpmTasks('grunt-shell');
+
+  grunt.registerTask('build_and_deploy',['clean','shell:ember_build','copy', 'shell:parse_deploy']);
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
