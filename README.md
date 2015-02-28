@@ -42,7 +42,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-* Ensure your parse configuration is saved in `dist/config/global.json` before deploying:
+* Ensure your parse configuration is saved in `config/global.json` before deploying:
 ```
 {
     "applications": {
