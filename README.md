@@ -11,6 +11,7 @@ You will need the following things properly installed on your computer.
 * [Node.js](http://nodejs.org/) (with NPM)
 * [Bower](http://bower.io/)
 * [Ember CLI](http://www.ember-cli.com/)
+* [Parse CLI](https://parse.com/docs/cloud\_code\_guide)
 * [PhantomJS](http://phantomjs.org/)
 
 ## Installation
@@ -41,7 +42,20 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+* Ensure your parse configuration is saved in `dist/config/global.json` before deploying:
+```
+{
+    "applications": {
+        "_default": {
+            "link": "YOUR APPLICATION NAME"
+        }, 
+        "YOUR APPLICATION NAME": {
+            "applicationId": "YOUR APPLICATION ID", 
+            "masterKey": "YOUR MASTER KEY"
+        }
+    }
+}
+```
 
 ## Further Reading / Useful Links
 
